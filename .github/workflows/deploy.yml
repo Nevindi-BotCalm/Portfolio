@@ -27,17 +27,24 @@ jobs:
           node-version: "18"
           cache: "npm"
 
-      - name: Install dependencies
-        working-directory: ./Nevindi
+      - name: Navigate and verify directory
         run: |
+          cd Nevindi
+          echo "Current directory:"
           pwd
+          echo "Directory contents:"
           ls -la
+
+      - name: Install dependencies
+        run: |
+          cd Nevindi
           npm ci
 
       - name: Build
-        working-directory: ./Nevindi
         run: |
+          cd Nevindi
           npm run build
+          echo "Build directory contents:"
           ls -la dist
 
       - name: Setup Pages
@@ -46,7 +53,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "Nevindi/dist"
+          path: dist
+          directory: Nevindi
 
   deploy:
     environment:
