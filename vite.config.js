@@ -4,9 +4,8 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   base: '/Portfolio/',
-  plugins: [
-    react(),
-    tailwindcss()
-  ],
- 
+  plugins: [react()],
+  build: {
+    cssMinify: 'lightningcss'
+  }
 })
