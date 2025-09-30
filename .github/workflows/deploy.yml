@@ -29,11 +29,16 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./Nevindi
-        run: npm ci
+        run: |
+          pwd
+          ls -la
+          npm ci
 
       - name: Build
         working-directory: ./Nevindi
-        run: npm run build
+        run: |
+          npm run build
+          ls -la dist
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -41,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./Nevindi/dist"
+          path: "Nevindi/dist"
 
   deploy:
     environment:
