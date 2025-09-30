@@ -28,14 +28,6 @@ jobs:
           cache: "npm"
           cache-dependency-path: "Nevindi/package-lock.json"
 
-      - name: Navigate and verify directory
-        run: |
-          cd Nevindi
-          echo "Current directory:"
-          pwd
-          echo "Directory contents:"
-          ls -la
-
       - name: Install dependencies
         run: |
           cd Nevindi
@@ -59,7 +51,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ github.event.repository.html_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
